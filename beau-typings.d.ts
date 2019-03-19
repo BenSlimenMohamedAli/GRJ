@@ -1,0 +1,1 @@
+///<reference path='/home/astro/.vscode/extensions/bespokify.beau-vscode-0.1.26/data/docs/beau.d.ts'/>

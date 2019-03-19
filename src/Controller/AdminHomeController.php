@@ -2,13 +2,13 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AdminHomeController extends AbstractController
+class AdminHomeController extends Controller
 {
     /**
-     * @Route("/admin/home", name="admin_home")
+     * @Route("/admin", name="admin_home")
      */
     public function index()
     {
@@ -16,4 +16,5 @@ class AdminHomeController extends AbstractController
             'controller_name' => 'AdminHomeController',
         ]);
     }
+
 }

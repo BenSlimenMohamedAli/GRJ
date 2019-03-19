@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AdminArticleController extends AbstractController
+class AdminArticleController extends Controller
 {
     /**
      * @Route("/admin/article", name="admin_article")
