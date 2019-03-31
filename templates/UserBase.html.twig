@@ -1,21 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title> Page -{% block title %}{% endblock %} </title>
+  <title> GRJ -{% block title %}{% endblock %} </title>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="{{ asset('vendor/MDB/css/bootstrap.min.css')}}">
-  <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="{{ asset('vendor/MDB/css/mdb.min.css')}}">
+  <link rel="stylesheet" data-version="1.1.0" href="{{ asset('vendor/MDB/css/bootstrap.min.css')}}">
+  <link rel="stylesheet" data-version="1.1.0" href="{{ asset('vendor/MDB/css/mdb.min.css')}}">
+  <link rel="stylesheet" data-version="1.1.0" href="{{ asset('assets/css/user/style.css')}}">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
 </head>
+
 <body>
+  <!-- Loader -->
+  <div class="loader">
+    <div class="loader-container">
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+    </div>
+  </div>
   <!-- The Top bar header -->
   {% include 'UserTopBar.html.twig' %}
 
+  <!-- page body -->
+  {% block body %}{% endblock %}
+  <!-- Footer -->
+  {% include 'UserFooter.html.twig' %}
+
   <!-- Javascript -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="{{ asset('vendor/MDB/js/bootstrap.min.js')}}"></script>
+  <script src="{{ asset('vendor/MDB/js/mdb.min.js')}}"></script>
+  <script src="{{ asset('vendor/parallaxJS/parallax.min.js')}}"></script>
+  <script src="{{ asset('assets/js/user/script.js')}}"></script>
 </body>
+
 </html>

@@ -44,6 +44,11 @@ class Admin implements UserInterface, \Serializable
      */
     private $picture;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $role;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -171,6 +176,18 @@ class Admin implements UserInterface, \Serializable
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getRole(): ?bool
+    {
+        return $this->role;
+    }
+
+    public function setRole(bool $role): self
+    {
+        $this->role = $role;
 
         return $this;
     }

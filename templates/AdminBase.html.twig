@@ -13,6 +13,7 @@
     crossorigin="anonymous">
   <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="{{ asset('vendor/Shards-dashboard/styles/shards-dashboards.1.1.0.min.css')}}">
   <link rel="stylesheet" href="{{ asset('vendor/Shards-dashboard/styles/extras.1.1.0.min.css')}}">
+  {% block stylesheets %}{% endblock %}
   <script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
 
@@ -26,9 +27,9 @@
           <nav class="navbar align-items-stretch navbar-light bg-white flex-md-nowrap border-bottom p-0">
             <a class="navbar-brand w-100 mr-0" href="#" style="line-height: 25px;">
               <div class="d-table m-auto">
-                <img id="main-logo" class="d-inline-block align-top mr-1" style="max-width: 25px;" src="{{ asset('vendor/Shards-dashboard/images/shards-dashboards-logo.svg')}}"
-                  alt="Shards Dashboard">
-                <span class="d-none d-md-inline ml-1">Shards Dashboard</span>
+                <img id="main-logo" class="d-inline-block align-top mr-1" style="max-width: 70px;" src="{{ asset('assets/img/logo.png')}}"
+                  alt="GRJ Immigration">
+                <span class="d-none d-md-inline ml-1">GRJ Immigration</span>
               </div>
             </a>
             <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none">
@@ -36,58 +37,19 @@
             </a>
           </nav>
         </div>
-        <form action="#" class="main-sidebar__search w-100 border-right d-sm-flex d-md-none d-lg-none">
-          <div class="input-group input-group-seamless ml-3">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <i class="fas fa-search"></i>
-              </div>
-            </div>
-            <input class="navbar-search form-control" type="text" placeholder="Search for something..." aria-label="Search">
-          </div>
-        </form>
+        
         <div class="nav-wrapper">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">
-                <i class="material-icons">edit</i>
-                <span>Blog Dashboard</span>
+              <a class="nav-link" href="{{path('admin_admins')}}">
+                <i class="material-icons">people</i>
+                <span>Gérer admins</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="components-blog-posts.html">
-                <i class="material-icons">vertical_split</i>
-                <span>Blog Posts</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="add-new-post.html">
-                <i class="material-icons">note_add</i>
-                <span>Add New Post</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="form-components.html">
-                <i class="material-icons">view_module</i>
-                <span>Forms &amp; Components</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="tables.html">
-                <i class="material-icons">table_chart</i>
-                <span>Tables</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="user-profile-lite.html">
-                <i class="material-icons">person</i>
-                <span>User Profile</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="errors.html">
-                <i class="material-icons">error</i>
-                <span>Errors</span>
+              <a class="nav-link" href="{{path('admin_articles')}}">
+                <i class="material-icons">people</i>
+                <span>Créer article</span>
               </a>
             </li>
           </ul>
@@ -98,16 +60,9 @@
         <div class="main-navbar sticky-top bg-white">
           <!-- Main Navbar -->
           <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
-            <form action="#" class="main-navbar__search w-100 d-none d-md-flex d-lg-flex">
-              <div class="input-group input-group-seamless ml-3">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <i class="fas fa-search"></i>
-                  </div>
-                </div>
-                <input class="navbar-search form-control" type="text" placeholder="Search for something..." aria-label="Search">
-              </div>
-            </form>
+            <div class=" w-100 d-none d-md-flex d-lg-flex">
+              
+            </div>
             <ul class="navbar-nav border-left flex-row ">
               <li class="nav-item border-right dropdown notifications">
                 <a class="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
@@ -148,8 +103,8 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button"
                   aria-haspopup="true" aria-expanded="false">
-                  <img class="user-avatar rounded-circle mr-2" src="{{ asset('vendor/Shards-dashboard/images/avatars/0.jpg')}}" alt="User Avatar">
-                  <span class="d-none d-md-inline-block">Sierra Brooks</span>
+                  <img class="user-avatar rounded-circle mr-5" src="{{ asset('profile_pictures/admins/' ~ app.user.picture )}}" alt="User Avatar">
+                  <span class="d-none d-md-inline-block ml-5">{{app.user.name}}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-small">
                   <a class="dropdown-item" href="user-profile-lite.html">
@@ -159,7 +114,7 @@
                   <a class="dropdown-item" href="add-new-post.html">
                     <i class="material-icons">note_add</i> Add New Post</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item text-danger" href="#">
+                  <a class="dropdown-item text-danger" href="{{ path('logout') }}">
                     <i class="material-icons text-danger">&#xE879;</i> Logout </a>
                 </div>
               </li>
@@ -215,7 +170,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Sharrre/2.0.1/jquery.sharrre.min.js"></script>
   <script src="{{ asset('vendor/Shards-dashboard/scripts/extras.1.1.0.min.js')}}"></script>
   <script src="{{ asset('vendor/Shards-dashboard/scripts/shards-dashboards.1.1.0.min.js')}}"></script>
-  <script src="{{ asset('scripts/app/app-blog-overview.1.1.0.js')}}"></script>
+  <script src="{{ asset('vendor/Shards-dashboard/scripts/app/app-blog-overview.1.1.0.js')}}"></script>
+
+  {% block javascript %}{% endblock %}
 </body>
 
 </html>
