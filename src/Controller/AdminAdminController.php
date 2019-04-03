@@ -37,7 +37,7 @@ class AdminAdminController extends Controller
         $password = '123456';
         
         // test the image type 
-        $image_types = array("png", "jpg", "svg", "jpeg", "bmp", "bpg");
+        $image_types = array("png", "jpg","jpeg");
 
         $admin = new Admin();
 

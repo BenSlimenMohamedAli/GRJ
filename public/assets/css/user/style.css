@@ -76,7 +76,7 @@ body {
  */
 nav.navigation-bar {
   text-transform: uppercase;
-  border-bottom: 2px solid #fff;
+  border-bottom: 5px solid #fff;
   font-size: 14px;
   /* navbar */
   /* next event button */
@@ -93,7 +93,7 @@ nav.navigation-bar nav.navbar a.navbar-brand {
   padding: 5px;
 }
 nav.navigation-bar nav.navbar ul.navbar-nav li.nav-item {
-  padding: 15px;
+  padding: 25px;
   cursor: pointer;
   font-family: Arial, Helvetica, sans-serif;
 }

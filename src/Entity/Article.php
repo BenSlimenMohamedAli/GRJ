@@ -37,6 +37,11 @@ class Article
      */
     private $admin;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $last_modified;
+
     public function getId(): ?string
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Article
     public function setAdmin(?Admin $admin): self
     {
         $this->admin = $admin;
+
+        return $this;
+    }
+
+    public function getLastModified(): ?\DateTimeInterface
+    {
+        return $this->last_modified;
+    }
+
+    public function setLastModified(\DateTimeInterface $last_modified): self
+    {
+        $this->last_modified = $last_modified;
 
         return $this;
     }
