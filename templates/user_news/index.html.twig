@@ -1,135 +1,88 @@
 {% extends 'UserBase.html.twig' %}
 
 {% block title %}article{% endblock %}
+
+{% block Stylesheets %}
+<style>
+.chip.chip-md {
+  height: 42px;
+  line-height: 42px;
+  border-radius: 21px;
+}
+.chip.chip-md img {
+  height: 42px;
+  width: 42px;
+}
+</style>
+{% endblock %}
 {% block body %}
 <!-- Cover image -->
-<div class="parallax-window" data-parallax="scroll" data-image-src="{{asset('assets/img/user/workplace.jpg')}}">
-    <div class="parallax-mask"></div>
+<div class="parallax-window z-depth-5" data-parallax="scroll" data-image-src="{{asset('assets/img/user/toronto.jpg')}}">
+    <div class="parallax-mask text-white text-center">
+        <h1 style="margin-top : 170px">Articles</h1>
+    </div>
 </div>
 
 <div class="content_section">
     <!-- Title -->
     <div class="title container-fluid">
         <div class="row ">
-            <div class=" text col-md-3 p-3 font-weight-bold">News <i class=" ml-5 fas fa-arrow-down"> </i></div>
+            <div class=" text col-md-3 p-3 font-weight-bold">GRJ IMMIGRATION </div>
         </div>
     </div>
     <!-- /Title -->
     <!-- Content -->
+
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <!-- Section: Blog v.2 -->
-        <section class="text-center container-fluid t-4">
+                    <section class="text-center container-fluid t-4 pb-5 pt-5">
+                        <!-- Grid row -->
+                        <div class="row">
+                            {% for post in news %}
+                            <!-- Grid column -->
+                            <div class="col-lg-4 col-md-12 mb-md-0 mb-4">
 
-            <!-- Section heading -->
-            <h2 class="h1-responsive font-weight-bold">Recent posts</h2>
-            <!-- Section description -->
-            <p class="dark-grey-text w-responsive mx-auto mb-5">Duis aute irure dolor in reprehenderit in voluptate
-                velit
-                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                culpa</p>
+                                <!-- Featured image -->
+                                <div class="view overlay mb-4" style="height: 40vmin; margin:auto; text-align : center">
+                                    <img src="{{asset('article_pictures/'~ post.picture)}}"
+                                        class="d-block rounded z-deptn-3" style="height : 95%; margin: auto"
+                                        alt="{{ post.title }}">
+                                    <a>
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                                <p><span class="badge badge-pill badge-default">{{ post.lastModified.format("d/m/Y") }} </span> <span class="badge badge-pill badge-secondary">{{ post.lastModified.format("h:i:s A") }}</span>
+                                </p>
+                                <!-- Post title -->
+                                <h2 class="font-weight-bold mb-3"><strong>{{ post.title }}</strong></h2>                                <!-- Post data -->
+                                <p>
+                                        <div class="chip chip-md darken-2">
+                                        <img src="{{asset('profile_pictures/admins/'~ post.admin.picture)}}"
+                                            alt="{{post.admin.name}}"> {{post.admin.name}}
+                                    </div>
+                                </p>
+                                <!-- Read more button -->
+                                <a href="/news/details/{{post.id}}"
+                                    class="btn btn-dark btn-rounded btn-md mb-4">Lire</a>
 
-            <!-- Grid row -->
-            <div class="row">
 
-                <!-- Grid column -->
-                <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
+                            </div>
+                            <!-- Grid column -->
+                            {% endfor %}
 
-                    <!-- Featured image -->
-                    <div class="view overlay rounded z-depth-2 mb-4">
-                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/81.jpg"
-                            alt="Sample image">
-                        <a>
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
+                        </div>
+                        <!-- Grid row -->
+
+                    </section>
+                    <!-- Section: Blog v.2 -->
+
+                    <div class="text-center">
+                        <div id="page-selection"></div>
                     </div>
-
-                    <!-- Category -->
-                    <a href="#!" class="pink-text">
-                        <h6 class="font-weight-bold mb-3"><i class="fas fa-map pr-2"></i>Adventure</h6>
-                    </a>
-                    <!-- Post title -->
-                    <h4 class="font-weight-bold mb-3"><strong>Title of the news</strong></h4>
-                    <!-- Post data -->
-                    <p>by <a class="font-weight-bold">Billy Forester</a>, 15/07/2018</p>
-                    <!-- Excerpt -->
-                    <p class="dark-grey-text">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
-                        impedit
-                        quo minus id quod maxime placeat facere possimus voluptas.</p>
-                    <!-- Read more button -->
-                    <a class="btn btn-pink btn-rounded btn-md">Read more</a>
-
                 </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
-                <div class="col-lg-4 col-md-6 mb-md-0 mb-4">
-
-                    <!-- Featured image -->
-                    <div class="view overlay rounded z-depth-2 mb-4">
-                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
-                            alt="Sample image">
-                        <a>
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
-
-                    <!-- Category -->
-                    <a href="#!" class="deep-orange-text">
-                        <h6 class="font-weight-bold mb-3"><i class="fas fa-graduation-cap pr-2"></i>Education</h6>
-                    </a>
-                    <!-- Post title -->
-                    <h4 class="font-weight-bold mb-3"><strong>Title of the news</strong></h4>
-                    <!-- Post data -->
-                    <p>by <a class="font-weight-bold">Billy Forester</a>, 13/07/2018</p>
-                    <!-- Excerpt -->
-                    <p class="dark-grey-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                        voluptatum deleniti atque corrupti quos dolores.</p>
-                    <!-- Read more button -->
-                    <a class="btn btn-deep-orange btn-rounded btn-md">Read more</a>
-
-                </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
-                <div class="col-lg-4 col-md-6 mb-0">
-
-                    <!-- Featured image -->
-                    <div class="view overlay rounded z-depth-2 mb-4">
-                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/13.jpg"
-                            alt="Sample image">
-                        <a>
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
-
-                    <!-- Category -->
-                    <a href="#!" class="blue-text">
-                        <h6 class="font-weight-bold mb-3"><i class="fas fa-fire pr-2"></i>Culture</h6>
-                    </a>
-                    <!-- Post title -->
-                    <h4 class="font-weight-bold mb-3"><strong>Title of the news</strong></h4>
-                    <!-- Post data -->
-                    <p>by <a class="font-weight-bold">Billy Forester</a>, 11/07/2018</p>
-                    <!-- Excerpt -->
-                    <p class="dark-grey-text">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-                        fugit, sed
-                        quia consequuntur magni dolores eos qui ratione.</p>
-                    <!-- Read more button -->
-                    <a class="btn btn-info btn-rounded btn-md">Read more</a>
-
-                </div>
-                <!-- Grid column -->
-
-            </div>
-            <!-- Grid row -->
-
-        </section>
-        <!-- Section: Blog v.2 -->
-                </div>
-                <div class="col-md-3 bg-light"></div>
             </div>
         </div>
 
@@ -137,4 +90,32 @@
     <!-- /Content -->
 </div>
 
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ asset('vendor/bootpag/jquery.bootpag.min.js')}}"></script>
+<script>
+    let pageNumber = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
+    if (isNaN(pageNumber) || pageNumber === '') {
+        pageNumber = 1;
+    }
+    $('#page-selection').bootpag({
+        total: {{ pages }},
+        page: pageNumber,
+        maxVisible: 5,
+        leaps: true,
+        firstLastUse: true,
+        first: '←',
+        last: '→',
+        wrapClass: 'pagination',
+        activeClass: 'active',
+        disabledClass: 'disabled',
+        nextClass: 'next',
+        prevClass: 'prev',
+        lastClass: 'last',
+        firstClass: 'first'
+    }).on("page", function (event, num) {
+        window.location.replace('/news/' + num);
+    });
+</script>
 {% endblock %}

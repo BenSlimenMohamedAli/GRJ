@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>{% block title %}{% endblock %}</title>
+  <title>GRJ Admin - {% block title %}{% endblock %}</title>
   <meta name="description" content="A high-quality &amp; free Bootstrap admin dashboard template pack that comes with lots of templates and components.">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -13,11 +13,18 @@
     crossorigin="anonymous">
   <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="{{ asset('vendor/Shards-dashboard/styles/shards-dashboards.1.1.0.min.css')}}">
   <link rel="stylesheet" href="{{ asset('vendor/Shards-dashboard/styles/extras.1.1.0.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('assets/css/admin/style.css')}}">
   {% block stylesheets %}{% endblock %}
   <script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
 
 <body class="h-100">
+  <!-- ajax loader -->
+<div id="ajaxloader" class="spinner-back">
+    <svg class="spinner" viewBox="0 0 50 50">
+        <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+    </svg>
+</div>
  
   <div class="container-fluid">
     <div class="row">
@@ -25,7 +32,7 @@
       <aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
         <div class="main-navbar">
           <nav class="navbar align-items-stretch navbar-light bg-white flex-md-nowrap border-bottom p-0">
-            <a class="navbar-brand w-100 mr-0" href="#" style="line-height: 25px;">
+            <a class="navbar-brand w-100 mr-0" href="{{path('admin_home')}}" style="line-height: 25px;">
               <div class="d-table m-auto">
                 <img id="main-logo" class="d-inline-block align-top mr-1" style="max-width: 70px;" src="{{ asset('assets/img/logo.png')}}"
                   alt="GRJ Immigration">
@@ -41,6 +48,18 @@
         <div class="nav-wrapper">
           <ul class="nav flex-column">
             <li class="nav-item">
+              <a class="nav-link" href="{{path('admin_home')}}">
+                <i class="material-icons">dashboard</i>
+                <span>Tableau du bord</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{path('admin_profile')}}">
+                <i class="material-icons">&#xE7FD;</i>
+                <span>Profile</span>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="{{path('admin_admins')}}">
                 <i class="material-icons">people</i>
                 <span>Gérer admins</span>
@@ -48,7 +67,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{path('admin_articles')}}">
-                <i class="material-icons">people</i>
+                <i class="material-icons">add</i>
                 <span>Créer article</span>
               </a>
             </li>
@@ -103,7 +122,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button"
                   aria-haspopup="true" aria-expanded="false">
-                  <img class="user-avatar rounded-circle mr-5" src="{{ asset('profile_pictures/admins/' ~ app.user.picture )}}" alt="User Avatar">
+                  <img class="user-avatar rounded-circle mr-5" src="{{ asset('profile_pictures/admins/' ~ app.user.picture)}}" alt="User Avatar">
                   <span class="d-none d-md-inline-block ml-5">{{app.user.name}}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-small">
@@ -171,7 +190,7 @@
   <script src="{{ asset('vendor/Shards-dashboard/scripts/extras.1.1.0.min.js')}}"></script>
   <script src="{{ asset('vendor/Shards-dashboard/scripts/shards-dashboards.1.1.0.min.js')}}"></script>
   <script src="{{ asset('vendor/Shards-dashboard/scripts/app/app-blog-overview.1.1.0.js')}}"></script>
-
+  <script src="{{ asset('assets/js/admin/script.js')}}"></script>
   {% block javascript %}{% endblock %}
 </body>
 

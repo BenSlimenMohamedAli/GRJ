@@ -1,68 +1,8 @@
 {% extends 'AdminBase.html.twig' %}
 
-{% block title %}Admin -Admins{% endblock %}
+{% block title %}Admins{% endblock %}
 
-{% block stylesheets %}
-<style>
-    .spinner-back {
-        position: fixed;
-        z-index: 10000;
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        background: black;
-        opacity: 0.4;
-    }
-
-    .spinner {
-        animation: rotate 2s linear infinite;
-        z-index: 1000;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin: -25px 0 0 -25px;
-        width: 50px;
-        height: 50px;
-
-        & .path {
-            stroke: hsl(210, 70, 75);
-            stroke-linecap: round;
-            animation: dash 1.5s ease-in-out infinite;
-        }
-    }
-
-    @keyframes rotate {
-        100% {
-            transform: rotate(360deg);
-        }
-    }
-
-    @keyframes dash {
-        0% {
-            stroke-dasharray: 1, 150;
-            stroke-dashoffset: 0;
-        }
-
-        50% {
-            stroke-dasharray: 90, 150;
-            stroke-dashoffset: -35;
-        }
-
-        100% {
-            stroke-dasharray: 90, 150;
-            stroke-dashoffset: -124;
-        }
-    }
-</style>
-{% endblock %}
 {% block body %}
-<!-- ajax loader -->
-<div id="ajaxloader" class="spinner-back">
-    <svg class="spinner" viewBox="0 0 50 50">
-        <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
-    </svg>
-</div>
 <!-- Modal -->
 <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="notifmodal" role="dialog"
     tabindex="-1">
@@ -77,7 +17,7 @@
                 <!-- add admin : sucsess -->
                 <span class="text-success">admin ajouté avec succés</span>
                 <!-- add admin : filure -->
-                <span class="text-danger">les types des images autorisés sont : png, jpg, svg, jpeg, bmp, bpg</span>
+                <span class="text-danger">les types des images autorisés sont : png, jpg, jpeg</span>
                 <span class="text-danger">vérifier votre connection</span>
                 <span class="text-danger">l'email est déja utilisé</span>
                 <span class="text-danger">la taille de l'image ne peut pas dépasser 2M</span>
@@ -117,10 +57,91 @@
         </div>
     </div>
 </form>
-
 <hr />
+<!-- Admins List -->
+<div>
+    <div class="container">
+        {% for admin in admins %}
+        <div class="row text-center">
+            <input type="hidden" value="{{ admin.id }}" />
+            <div class="col-md-3"><img width="50px" class="rounded-circle"
+                    src="{{ asset( 'profile_pictures/admins/' ~ admin.picture) }}" /></div>
+            <div class="col-md-3 pt-3">{{ admin.name }}</div>
+            <div class="col-md-3 pt-3">{{ admin.email }}</div>
+            {% if admin.role == 0 %}
+            {% if admin.id != app.user.id %}
+            <form action="/admin/delete-admin" method="post">
+                <input type="hidden" value="{{ admin.id }}" name="admin_id" />
+                <div class="col-md-3 pt-3"><button type="button" class="btn btn-danger delete_btn">Supprimer</button>
+                    <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" role="dialog"
+                    tabindex="-1">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                voulez vous confirmer la suppression
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" data-dismiss="modal" type="button">Annuler</button>
+                                <button class="btn btn-danger" type="submit">confirmer</button>
+                            </div>
+                        </div>
+                </div>
+                </div>
+                <!-- Confirmation Modal -->
+                
+                    </div>
+            </form>
+            {% endif %}
+            {% endif %}
+        </div>
+        <hr />
+        {% endfor %}
+
+        <div class="text-center">
+            <div id="page-selection"></div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block javascript %}
 <script src="{{ asset('assets/js/admin/admin_admins.js')}}"></script>
+<script src="{{ asset('vendor/bootpag/jquery.bootpag.min.js')}}"></script>
+<script>
+    let pageNumber = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
+    if (isNaN(pageNumber) || pageNumber === '') {
+        pageNumber = 1;
+    }
+    $('#page-selection').bootpag({
+        total: {{pages}},
+        page: pageNumber,
+        maxVisible: 5,
+        leaps: true,
+        firstLastUse: true,
+        first: '←',
+        last: '→',
+        wrapClass: 'pagination',
+        activeClass: 'active',
+        disabledClass: 'disabled',
+        nextClass: 'next',
+        prevClass: 'prev',
+        lastClass: 'last',
+        firstClass: 'first'
+    }).on("page", function (event, num) {
+        window.location.replace('/admin/admins/' + num);
+    });
+
+    $(document).ready(function () {
+        $('.delete_btn').on('click', function () {
+            $(this).next().modal('toggle');
+        });
+    });
+</script>
+</script>
 {% endblock %}

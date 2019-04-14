@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title> GRJ Immigration -{% block title %}{% endblock %} </title>
+  <title> GRJ Immigration - {% block title %}{% endblock %} </title>
 
   <!-- Stylesheets -->
   <link rel="stylesheet" data-version="1.1.0" href="{{ asset('vendor/MDB/css/bootstrap.min.css')}}">
@@ -13,6 +13,8 @@
   <link rel="stylesheet" data-version="1.1.0" href="{{ asset('assets/css/user/style.css')}}">
 
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+  {% block Stylesheets %}{% endblock %}
 
 </head>
 
@@ -53,6 +55,8 @@
   <script src="{{ asset('vendor/MDB/js/mdb.min.js')}}"></script>
   <script src="{{ asset('vendor/parallaxJS/parallax.min.js')}}"></script>
   <script src="{{ asset('assets/js/user/script.js')}}"></script>
+
+  {% block javascript %} {% endblock %}
 </body>
 
 </html>

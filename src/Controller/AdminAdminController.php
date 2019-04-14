@@ -16,20 +16,36 @@ use App\Entity\Admin;
 class AdminAdminController extends Controller
 {
     /**
-     * @Route("/admin/admins", name="admin_admins")
+     * @Route("/admin/admins/{page}", name="admin_admins", defaults={"page"=1})
      */
-    public function index()
+    public function index($page)
     {
+        $admins = $this->getDoctrine()
+        ->getRepository(Admin::class)
+        ->findBy(array(), array('name' => 'ASC'),3,($page-1)*3);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $query = $entityManager->createQuery("SELECT count(a.id) FROM App\Entity\Admin a");
+
+        $pages = $query->getResult();
+
+        if($pages[0][1] % 3 != 0) {
+            $pages = ($pages[0][1] /3) + 1; 
+        } else {
+            $pages = ($pages[0][1] /3);
+        }
+
         return $this->render('admin_admin/index.html.twig', [
             'controller_name' => 'AdminAdminController',
+            'admins' => $admins,
+            'pages' => $pages
         ]);
     }
     
     /**
-     * @Route("/admin/admins/add", name="add_admin")
+     * @Route("/admin/add-admin", name="add_admin")
      */
     public function add(Request $request, UserPasswordEncoderInterface  $encoder) {
-
         $username = $request->request->get('username');
         $email = $request->request->get('email');
         $picture = $request->files->get('picture');
@@ -88,6 +104,21 @@ class AdminAdminController extends Controller
         return new Response('0');
     }
 
+    /**
+     * @Route("/admin/delete-admin", name="delete_admin")
+     */
+    public function delete(Request $request) {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $repository = $this->getDoctrine()->getRepository(Admin::class);
+
+        $admin = $repository->find($request->request->get('admin_id'));
+
+        $entityManager->remove($admin);
+        $entityManager->flush();
+
+        return $this->redirect('/admin/admins/1', 301);
+    }
 
     /**
      * 

@@ -7,18 +7,18 @@ body {
   font-family: "Arial Narrow", Arial, "Helvetica Condensed", Helvetica, sans-serif;
 }
 *::selection {
-  background: #064579;
+  background: #A9372A;
   /* WebKit/Blink Browsers */
 }
 *::-moz-selection {
-  background: #064579;
+  background: #A9372A;
   /* Gecko Browsers */
 }
 /**
  * Loader
  */
 .loader {
-  background-image: linear-gradient(rgba(255, 0, 0, 0.829), #064579);
+  background-image: linear-gradient(#A9372A, #32322D);
   opacity: none;
   z-index: 2000;
   position: fixed;
@@ -76,7 +76,7 @@ body {
  */
 nav.navigation-bar {
   text-transform: uppercase;
-  border-bottom: 5px solid #fff;
+  border-bottom: 5px solid #32322D;
   font-size: 14px;
   /* navbar */
   /* next event button */
@@ -93,12 +93,12 @@ nav.navigation-bar nav.navbar a.navbar-brand {
   padding: 5px;
 }
 nav.navigation-bar nav.navbar ul.navbar-nav li.nav-item {
-  padding: 25px;
+  padding: 15px;
   cursor: pointer;
   font-family: Arial, Helvetica, sans-serif;
 }
 nav.navigation-bar nav.navbar ul.navbar-nav li.nav-item.special {
-  color: rgba(255, 0, 0, 0.829);
+  color: #A9372A;
 }
 nav.navigation-bar nav.navbar ul.navbar-nav li.nav-item.social.facebook {
   color: #0506ff;
@@ -116,11 +116,11 @@ nav.navigation-bar nav.navbar ul.navbar-nav li.nav-item.social:hover {
   background-color: #fff;
 }
 nav.navigation-bar nav.navbar ul.navbar-nav li.nav-item:hover {
-  background-color: #064579;
+  background-color: #32322D;
   color: #fff;
 }
 nav.navigation-bar nav.subnav {
-  background-color: #064579;
+  background-color: #32322D;
   overflow: hidden;
   max-height: 0px;
   transition: max-height 0.5s ease-out;
@@ -129,15 +129,15 @@ nav.navigation-bar nav.subnav ul.navbar-nav li.nav-item {
   padding: 15px;
   cursor: pointer;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #064579;
+  background-color: #32322D;
   color: #fff;
 }
 nav.navigation-bar nav.subnav ul.navbar-nav li.nav-item:hover {
   background-color: #fff;
-  color: #064579;
+  color: #32322D;
 }
 nav.navigation-bar button.next-event-btn {
-  background-color: rgba(255, 0, 0, 0.829);
+  background-color: #A9372A;
   position: absolute;
   bottom: -45px;
   left: 0;
@@ -146,7 +146,7 @@ nav.navigation-bar button.next-event-btn {
 }
 nav.navigation-bar span#menu-btn {
   cursor: pointer;
-  color: #064579;
+  color: #32322D;
 }
 /* responsive navigation bar */
 nav.responsive-navigation-bar {
@@ -155,9 +155,9 @@ nav.responsive-navigation-bar {
   right: 0;
   bottom: 0;
   left: 0;
-  background: #eaeafa;
+  background: linear-gradient(#A9372A, #32322D);
   text-transform: uppercase;
-  color: rgba(255, 0, 0, 0.829);
+  color: #fff;
   -webkit-animation: navanimation 1s ease-out;
   animation: navanimation 1s ease-out;
   overflow: hidden;
@@ -186,7 +186,7 @@ nav.responsive-navigation-bar nav.navbar a.navbar-brand {
 nav.responsive-navigation-bar nav.navbar ul.navbar-nav {
   display: block;
   margin: 0 !important;
-  color: #111;
+  color: #fff;
 }
 nav.responsive-navigation-bar nav.navbar ul.navbar-nav li.nav-item {
   display: block;
@@ -194,13 +194,13 @@ nav.responsive-navigation-bar nav.navbar ul.navbar-nav li.nav-item {
   padding: 10px;
   cursor: pointer;
 }
-nav.responsive-navigation-bar nav.navbar ul.navbar-nav li.nav-item.special {
-  color: rgba(255, 0, 0, 0.829);
+nav.responsive-navigation-bar nav.navbar ul.navbar-nav li.nav-item a {
+  color: #fff;
 }
 nav.responsive-navigation-bar nav.navbar ul.navbar-nav li.nav-item:hover {
-  background-color: rgba(255, 0, 0, 0.829);
+  background-color: #A9372A;
   color: #fff;
-  border-bottom: 2px solid #064579;
+  border-bottom: 2px solid #32322D;
 }
 nav.responsive-navigation-bar nav.navbar ul.navbar-nav li.nav-item.social.facebook {
   color: #0506ff;
@@ -231,15 +231,15 @@ nav.responsive-navigation-bar nav.subnav ul.navbar-nav li.nav-item {
   margin: 0;
   padding: 5px;
   cursor: pointer;
-  color: #064579;
+  color: #fff;
 }
 nav.responsive-navigation-bar nav.subnav ul.navbar-nav li.nav-item.dropdown-nav {
   display: none;
 }
 nav.responsive-navigation-bar nav.subnav ul.navbar-nav li.nav-item:hover {
-  background-color: #064579;
+  background-color: #32322D;
   color: #fff;
-  border-bottom: 2px solid rgba(255, 0, 0, 0.829);
+  border-bottom: 2px solid #A9372A;
 }
 nav.responsive-navigation-bar button.next-event-btn {
   display: none;
@@ -302,6 +302,7 @@ nav.responsive-navigation-bar span#menu-btn {
  */
 .content_section {
   position: relative;
+  border-top: 10px solid #32322D;
 }
 .content_section .content {
   font-size: 3.5vmin;
@@ -317,7 +318,7 @@ nav.responsive-navigation-bar span#menu-btn {
   top: -56px;
 }
 .content_section .title .row .text {
-  background-color: rgba(255, 0, 0, 0.829);
+  background-color: #A9372A;
   color: #fff;
 }
 /**

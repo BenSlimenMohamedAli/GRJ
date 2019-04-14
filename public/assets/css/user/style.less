@@ -1,7 +1,7 @@
 @white : #fff;
-@primary : #064579;
-@red : rgba(255, 0, 0, 0.829);
-@navColor : #eaeafa;
+@primary : #32322D;
+@red : #A9372A;
+@navColor : linear-gradient(@red,@primary);
 @black : #111;
 
 /* social */
@@ -21,12 +21,12 @@ body {
 
 * {
     &::selection {
-        background: @primary;
+        background: @red;
         /* WebKit/Blink Browsers */
     }
 
     &::-moz-selection {
-        background: @primary;
+        background: @red;
         /* Gecko Browsers */
     }
 }
@@ -104,7 +104,7 @@ body {
 
 nav.navigation-bar {
     text-transform: uppercase;
-    border-bottom: 5px solid @white;
+    border-bottom: 5px solid @primary;
     font-size: 14px;
 
     nav.close-header {
@@ -124,7 +124,7 @@ nav.navigation-bar {
 
 
             li.nav-item {
-                padding: 25px;
+                padding: 15px;
                 cursor: pointer;
                 font-family: Arial, Helvetica, sans-serif;
 
@@ -212,7 +212,7 @@ nav.responsive-navigation-bar {
     left: 0;
     background: @navColor;
     text-transform: uppercase;
-    color: @red;
+    color: @white;
     -webkit-animation: navanimation 1s ease-out;
     animation: navanimation 1s ease-out;
     overflow: hidden;
@@ -245,16 +245,15 @@ nav.responsive-navigation-bar {
         ul.navbar-nav {
             display: block;
             margin: 0 !important;
-            color: @black;
-
+            color: @white;
             li.nav-item {
                 display: block;
                 margin: 0;
                 padding: 10px;
                 cursor: pointer;
 
-                &.special {
-                    color: @red;
+                a {
+                    color: @white; 
                 }
 
                 &:hover {
@@ -305,7 +304,7 @@ nav.responsive-navigation-bar {
                 margin: 0;
                 padding: 5px;
                 cursor: pointer;
-                color: @primary;
+                color: @white;
 
                 &.dropdown-nav {
                     display: none;
@@ -400,6 +399,7 @@ nav.responsive-navigation-bar {
 
 .content_section {
     position: relative;
+    border-top : 10px solid @primary;
 
     .content {
         font-size: 3.5vmin;

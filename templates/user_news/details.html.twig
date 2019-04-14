@@ -1,0 +1,108 @@
+{% extends 'UserBase.html.twig' %}
+
+{% block Stylesheets %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.snow.css" />
+{% endblock %}
+{% block body %}
+{%if (news)%}
+<!-- Cover image -->
+<div class="parallax-window z-depth-5" data-parallax="scroll"
+    data-image-src="{{asset('article_pictures/'~ news.picture)}}">
+    <div class="parallax-mask text-white text-center">
+        {% if is_granted('ROLE_ADMIN') %}
+        {% if news.admin.id == app.user.id %}
+        <input id="title" class="form-control" style="width : 350px; display: inline-block;margin-top : 170px" type="text"
+            value="{{news.title}}" />
+        {% else %}
+        <h1 style="margin-top : 170px">{{news.title}}</h1>
+        {% endif %}
+        {% else %}
+        <h1 style="margin-top : 170px">{{news.title}}</h1>
+        {% endif %}
+    </div>
+</div>
+
+<div class="content_section">
+    <!-- Title -->
+    <div class="title container-fluid">
+        <div class="row ">
+            <div class=" text col-md-3 p-3 font-weight-bold">GRJ IMMIGRATION</div>
+        </div>
+    </div>
+    <!-- /Title -->
+    <!-- Content -->
+
+    <div class="content p-5">
+        {% if is_granted('ROLE_ADMIN') %}
+        {% if news.admin.id == app.user.id %}
+        <div id="editor-container" class="add-new-post__editor mb-1"></div>
+        <form style="display : inline-block" method="post" action="/admin/articles/delete">
+            <input name="article_id" type="hidden" value="{{news.id}}"></input>
+            <button type="submit" class="btn btn-danger btn-rounded btn-md mb-4">Supprimer</button>
+        </form>
+
+        <button type="button" id="edit" class="btn btn-success btn-rounded btn-md mb-4">Modifier</button>
+
+        {% else %}
+        {{ news.body | raw }}
+        {% endif %}
+        {% else %}
+        {{ news.body | raw }}
+        {% endif %}
+    </div>
+    <!-- /Content -->
+</div>
+{% else %}
+<h1 class="p-5 m-5 text-center text-danger">Article not Found</h1>
+{% endif %}
+
+{% endblock %}
+
+{% block javascript %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.min.js"></script>
+<script>
+    $('#edit').on('click',function(){
+        $.ajax({method : 'post', data : {'article_id' : '{{news.id}}', 'new_title' : $('#title').val(), 'new_body' : $('#editor-container .ql-editor').html()}, url: "/admin/articles/update", success: function(result){
+            window.location.reload();
+  }});
+    });
+    var toolbarOptions = [
+        [{
+            'header': [1, 2, 3, 4, 5, false]
+        }],
+        ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+        ['blockquote', 'code-block'],
+        [{
+            'header': 1
+        }, {
+            'header': 2
+        }], // custom button values
+        [{
+            'list': 'ordered'
+        }, {
+            'list': 'bullet'
+        }],
+        [{
+            'script': 'sub'
+        }, {
+            'script': 'super'
+        }], // superscript/subscript
+        [{
+            'indent': '-1'
+        }, {
+            'indent': '+1'
+        }] // outdent/indent                                       // remove formatting button
+    ];
+
+    // Init the Quill RTE
+    var quill = new Quill('#editor-container', {
+        modules: {
+            toolbar: toolbarOptions
+        },
+        placeholder: 'article',
+        theme: 'snow'
+    });
+
+    quill.root.innerHTML = '{{ news.body | raw}}';
+</script>
+{% endblock %}

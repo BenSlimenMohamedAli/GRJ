@@ -9,11 +9,11 @@
         <a class="navbar-brand" href="{{path('user_home')}}"><img alt="GRJ logo" width="110px" src="{{ asset('assets/img/logo.png') }}" /></a>
         <!-- left menu -->
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown-nav" dropdown="#about-nav">a propos <i class=" ml-1 fas fa-arrow-down"> </i></li>
+            <li class="nav-item dropdown-nav" dropdown="#about-nav">a propos</li>
             <li class="nav-item">condidats</li>
             <li class="nav-item">employeurs</li>
-            <li class="nav-item">contact</li>
-            <a href="{{path('user_news')}}"><li class="nav-item special"><i class="fa fa-newspaper mr-2"></i>news</li></a>
+            <li class="nav-item"><a class="text-dark" href="{{path('user_contact')}}">contact</a></li>
+            <li class="nav-item special"><a href="{{path('user_news')}}">news</a></li>
         </ul>
 
         <!-- right menu -->

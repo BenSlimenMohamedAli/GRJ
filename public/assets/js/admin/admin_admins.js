@@ -1,22 +1,4 @@
 /**
- * init page 
- */
-
-$(document).ready(function() {
-    $('#ajaxloader').hide();
-    $('#ajaxloader').hide();
-});
-
-$(document).on({
-    ajaxStart: function () {
-        $('#ajaxloader').show();
-    },
-    ajaxStop: function () {
-        $('#ajaxloader').hide();
-    }
-});
-
-/**
  * add admin ajax call 
  */
 $('#add_admin').on('submit', function (e) {
@@ -33,7 +15,7 @@ $('#add_admin').on('submit', function (e) {
 
     $.ajax({
             method: "POST",
-            url: "/admin/admins/add",
+            url: "/admin/add-admin",
             data: form_data,
             processData: false,
             contentType: false
